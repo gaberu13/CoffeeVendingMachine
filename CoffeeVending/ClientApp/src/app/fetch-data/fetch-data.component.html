@@ -1,0 +1,20 @@
+<h1 id="tableLabel">Select coffee</h1>
+
+<p>Select cofee to go!</p>
+
+<p *ngIf="!coffees"><em>Loading...</em></p>
+
+<div class="card text-left mb-3 w-50 d-inline-block" *ngFor="let coffee of coffees">
+  <div class="card-body">
+    <img class="w-100 mb-4" src="{{coffee.image}}"/>
+    <h4 class="card-title">{{ coffee.name }}</h4>
+    <label>Description:</label>
+    <p class="card-text">
+      {{ coffee.description }}
+    </p>
+    <label>Price:</label>
+    <p class="card-text">{{ coffee.price }}</p>
+    <label>Country:</label>
+    <p class="card-text">{{ coffee.country }}</p>
+  </div>
+</div>
