@@ -1,10 +1,11 @@
-﻿using CoffeeVending.Models.DTO;
+﻿using CoffeeVending.Models;
+using CoffeeVending.Models.DTO;
 
 namespace CoffeeVending.Service.Interfaces
 {
     public interface ICoffeeVendingService
     {
-        dynamic GetCoffeeVending();
+        List<Coffee> GetCoffeeVending();
 
         void CreateOrder(OrderDTO order);
     }

@@ -30,7 +30,7 @@ namespace CoffeeVending.Service
             _context.SaveChanges();
         }
 
-        public dynamic GetCoffeeVending()
+        public List<Coffee> GetCoffeeVending()
         {
             var coffees = _context.Coffees.ToList();
             return coffees;

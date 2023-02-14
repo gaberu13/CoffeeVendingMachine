@@ -1,4 +1,5 @@
 ﻿using CoffeeVending.Data;
+using CoffeeVending.Models;
 using CoffeeVending.Models.DTO;
 using CoffeeVending.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,7 @@ namespace CoffeeVending.Service
             _context = context;
         }
 
-        public dynamic GetOrders()
+        public List<Order> GetOrders()
         {
             var orders = _context.Orders.Include(x => x.Coffee).ToList();
             return orders;

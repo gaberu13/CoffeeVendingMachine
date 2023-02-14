@@ -1,9 +1,9 @@
-﻿using CoffeeVending.Models.DTO;
+﻿using CoffeeVending.Models;
 
 namespace CoffeeVending.Service.Interfaces
 {
     public interface IOrderService
     {
-        dynamic GetOrders();
+        List<Order> GetOrders();
     }
 }
