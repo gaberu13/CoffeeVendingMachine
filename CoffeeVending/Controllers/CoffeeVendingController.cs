@@ -1,24 +1,33 @@
 ﻿using CoffeeVending.Models;
+using CoffeeVending.Models.DTO;
+using CoffeeVending.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeVending.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CoffeeVendingController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICoffeeVendingService _service;
 
-        public CoffeeVendingController(ApplicationDbContext context)
+        public CoffeeVendingController(ICoffeeVendingService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [HttpGet]
-        public dynamic Get()
+        public List<Coffee> Get()
         {
-            var coffees = _context.Coffees.ToList();
+            var coffees = _service.GetCoffeeVending();
             return coffees;
+        }
+
+        [HttpPost]
+        public dynamic Order(OrderDTO order)
+        {
+            _service.CreateOrder(order);
+            return Ok();
         }
     }
 }

@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CoffeeVending.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace CoffeeVending.Models
+namespace CoffeeVending.Data
 {
     public class ApplicationDbContext : DbContext
     {
@@ -9,6 +10,7 @@ namespace CoffeeVending.Models
           : base(options)
         { }
         public DbSet<Coffee> Coffees { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }
 

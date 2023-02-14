@@ -14,3 +14,26 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+.grid{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  column-gap: 15px;
+}
+
+.grid .card{
+  width: 49%;
+}
+.alert{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 9999;
+  right: 25px;
+  top: 75px;
+  width: 350px; 
+}

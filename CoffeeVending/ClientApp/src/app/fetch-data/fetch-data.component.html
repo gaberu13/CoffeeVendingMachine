@@ -1,20 +1,47 @@
 <h1 id="tableLabel">Select coffee</h1>
-
+<div class="alert alert-success" *ngIf="!!ordered"  role="alert">
+  <span>You have successfuly ordered coffee!</span> <span (click)="ordered = false" class="float-right">X</span>
+ </div>
 <p>Select cofee to go!</p>
 
 <p *ngIf="!coffees"><em>Loading...</em></p>
-
-<div class="card text-left mb-3 w-50 d-inline-block" *ngFor="let coffee of coffees">
-  <div class="card-body">
-    <img class="w-100 mb-4" src="{{coffee.image}}"/>
-    <h4 class="card-title">{{ coffee.name }}</h4>
-    <label>Description:</label>
-    <p class="card-text">
-      {{ coffee.description }}
-    </p>
-    <label>Price:</label>
-    <p class="card-text">{{ coffee.price }}</p>
-    <label>Country:</label>
-    <p class="card-text">{{ coffee.country }}</p>
+<div class="grid">
+  <div class="card text-left mb-3" *ngFor="let coffee of coffees">
+    <div class="card-body">
+      <img class="w-100 mb-4" src="{{ coffee.image }}" />
+      <h4 class="card-title">{{ coffee.name }}</h4>
+      <label>Description:</label>
+      <p class="card-text">
+        {{ coffee.description }}
+      </p>
+      <label>Price:</label>
+      <p class="card-text">$ {{ coffee.price | number :'.2'}}</p>
+      <label>Country:</label>
+      <p class="card-text">{{ coffee.country }}</p>
+      <div class="additional">
+        <hr>
+        <h5>Customize coffee</h5>
+        <label>Suger level:</label> <br />
+        <input type="radio" name="suger" ([ngModel])="model.suger" (change)="model.suger = 'no'"><span> No suger </span>
+        <input type="radio" name="suger" ([ngModel])="model.suger" (change)="model.suger = 'low'"><span> Low suger
+        </span>
+        <input type="radio" name="suger" ([ngModel])="model.suger" (change)="model.suger = 'midium'"><span> Midium suger
+        </span>
+        <input type="radio" name="suger" ([ngModel])="model.suger" (change)="model.suger = 'high'"><span> High suger
+        </span>
+        <br />
+        <br />
+        <input type="checkbox" ([ngModel])="model.milk" (change)="model.milk = !model.milk" /><span> Add Milk</span>
+        <br />
+        <input type="checkbox" ([ngModel])="model.caramelle" (change)="model.caramelle = !model.caramelle" /><span> Add
+          Caramelle</span> <br />
+        <input type="checkbox" ([ngModel])="model.creamer" (change)="model.creamer = !model.creamer" /><span> Add
+          Creamer</span> <br />
+        <input type="checkbox" ([ngModel])="model.decofe" (change)="model.decofe = !model.decofe" /><span> Decofe</span>
+        <br />
+      </div>
+    </div>
+    <button class="btn btn-primary m-2 float-right" (click)="orderCoffee(coffee.id)"> Order </button>
   </div>
 </div>
+

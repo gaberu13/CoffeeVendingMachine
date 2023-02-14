@@ -1,24 +1,44 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-fetch-data',
-  templateUrl: './fetch-data.component.html'
+  templateUrl: './fetch-data.component.html',
 })
-export class FetchDataComponent {
-  public coffees: any ;
+export class FetchDataComponent implements OnInit {
+  coffees: any;
+  ordered : any = false;
+  model: any = {
+    coffeeId: '',
+    suger: 'no',
+    milk: false,
+    caramelle: false,
+    creamer: false,
+    decofe: false,
+  };
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get(baseUrl + 'coffeevending').subscribe(result => {
-      this.coffees = result;
-    }, error => console.error(error));
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {}
+
+  ngOnInit(): void {
+    this.getCoffees();
   }
-}
 
-interface Coffee {
-  name: string;
-  description: string;
-  price: number;
-  country: string;
-  image: string;
+  getCoffees (){
+    this.http.get(this.baseUrl + 'api/coffeevending').subscribe(
+      (result: any) => {
+        this.coffees = result;
+      },
+      (error) => {}
+    );
+  }
+
+  orderCoffee(id: any) {
+    this.model.coffeeId = id;
+    this.http.post(this.baseUrl + 'api/coffeevending',this.model).subscribe(
+      (result: any) => {
+        this.ordered = true;
+      },
+      (error) => {}
+    );
+  }
 }

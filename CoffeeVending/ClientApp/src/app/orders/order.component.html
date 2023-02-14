@@ -1,0 +1,27 @@
+<h1>Orders</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>Coffee</td>
+      <td>Price</td>
+      <td>Suger</td>
+      <td>Milk</td>
+      <td>Caramelle</td>
+      <td>Creamer</td>
+      <td>Decofe</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{order.id}}</td>
+      <td>{{order.coffee.name}}</td>
+      <td> $ {{order.coffee.price | number : ".2"}}</td>
+      <td> {{order.suger | titlecase}}</td>
+      <td> {{order.milk ? 'Yes' : 'No' }}</td>
+      <td> {{order.caramelle ? 'Yes' : 'No' }}</td>
+      <td> {{order.creamer ? 'Yes' : 'No' }}</td>
+      <td> {{order.decofe ? 'Yes' : 'No' }}</td>
+    </tr>
+  </tbody>
+</table>
